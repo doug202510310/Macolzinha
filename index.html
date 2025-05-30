@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Pacientes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button id="theme-toggle" class="theme-toggle-fixed">🌙</button>
+    
+    <!-- Indicador de uso do localStorage -->
+    <div id="storage-indicator" class="storage-indicator">
+        <div class="storage-icon">💾</div>
+        <div class="storage-info">
+            <div class="storage-used" id="storage-used">0 MB</div>
+            <div class="storage-total">/ 5 MB</div>
+        </div>
+        <div class="storage-bar">
+            <div class="storage-progress" id="storage-progress"></div>
+        </div>
+    </div>
+    
+    <div class="layout">
+        <div class="vertical-bar">
+            <div class="logo-container">
+                <img class="logo" id="main-logo" src="imagens/Imagem do WhatsApp de 2025-05-15 à(s) 15.58.55_8fe2558e.jpg" alt="Logo" title="Clique para alterar o logo">
+            </div>
+            <input type="file" id="logo-input" accept="image/*" style="display: none;">
+            <h1 class="name">Maria Carolina</h1>
+            
+          
+        </div>
+        <main class="main__pacientes">
+            <h1 class="titulo_principal">Pacientes</h1>
+            <ul class="patient-list" id="patient-list">
+            </ul>
+            <h2 class="titulo_secundario">Adicionar Paciente</h2>
+            <form id="add-patient-form">
+                <input type="text" id="patient-name" placeholder="Nome do paciente" required>
+                <input type="number" id="patient-age" placeholder="Idade" required min="0">
+                <select id="patient-gender" required>
+                    <option value="">Sexo</option>
+                    <option value="masculino">Masculino</option>
+                    <option value="feminino">Feminino</option>
+                </select>
+                <input type="file" id="patient-photo" accept="image/*">
+                <button type="submit">Adicionar</button>
+            </form>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

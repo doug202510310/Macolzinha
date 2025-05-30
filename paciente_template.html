@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Paciente</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button id="theme-toggle" class="theme-toggle-fixed">🌙</button>
+    <div class="layout">
+        <div class="vertical-bar">
+            <img class="logo" id="patient-photo" src="" alt="Foto do Paciente">
+            <input type="file" id="edit-photo" accept="image/*" style="display:none;">
+            <button class="button_lateral" id="custom-photo-btn" style="margin-top:10px;">Selecionar Foto</button>
+            <button class="button_lateral" id="update-photo" style="margin-top:5px;">Atualizar Foto</button>
+        </div>
+        <main class="main__pacientes">
+            <h1 class="titulo_principal" id="patient-name"></h1>
+            <div id="fichas">
+                <!-- Fichas serão carregadas dinamicamente -->
+            </div>
+            
+            <textarea id="new-ficha" placeholder="Escreva sobre a consulta..."></textarea>
+            
+            <!-- Seção de Atividades -->
+            <div class="atividades-section">
+                <div class="atividades-buttons">
+                    <button class="button_atividade" id="criar-atividade">+ Criar Atividade</button>
+                    <button class="button_atividade" id="ver-atividades">📋 Minhas Atividades</button>
+                </div>
+            </div>
+            
+            <div class="button-container">
+                <button class="button_template" id="save-ficha">Salvar Ficha</button>
+                <button class="button_template" id="back-to-list">Voltar</button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal para Criar Atividade -->
+    <div id="modal-criar-atividade" class="modal hidden">
+        <!-- Conteúdo será criado dinamicamente -->
+    </div>
+
+    <!-- Modal para Ver Atividades -->
+    <div id="modal-ver-atividades" class="modal hidden">
+        <!-- Conteúdo será criado dinamicamente -->
+    </div>
+
+    <!-- Card de Lembrete -->
+    <div id="reminder-card" class="reminder-card">
+        <div class="reminder-header">
+            <h4>Lembrete de Consulta</h4>
+            <button id="close-reminder" class="close-btn">×</button>
+        </div>
+        <div class="reminder-content">
+            <p id="last-consultation-info">Carregando...</p>
+            <div class="reminder-actions">
+                <button id="mark-consultation-done" class="btn-done">
+                    ✓ Marcar Consulta como Feita
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="paciente_template.js"></script>
+</body>
+</html>

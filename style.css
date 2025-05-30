@@ -1,0 +1,420 @@
+@import url("styles/template.css");
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    li,ul {
+        list-style: none;
+    }
+}
+
+:root {
+    --cor-principal:pink;
+    --cor-de-titulo:white;
+    --cor-de-texto: black;
+    --cor-de-fundo: #f4f4f4;
+    --cor-de-botao: #ff69b4;
+    --cor-de-borda-botao:rgb(219, 23, 186) 1px solid;
+    --cor-de-botao-hover: #569cba;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--cor-de-fundo);
+}
+
+.layout {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+
+.vertical-bar {
+    width: 20vw;
+    background-color: var(--cor-principal);
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+}
+
+.logo-container {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.logo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: block;
+}
+
+.logo:hover {
+    border-color: var(--cor-de-botao);
+    transform: scale(1.10);
+    box-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
+    filter: brightness(1.1);
+}
+
+.name{
+    font-size: 20px;
+    color: var(--cor-de-titulo);
+    margin-top: 10px;
+    text-align: center;
+}
+
+.titulo_principal{
+    border: rgb(188, 97, 165) 2px solid;
+    margin-top: 0px;
+    background-color: var(--cor-principal);
+    color: var(--cor-de-titulo);
+    text-align: center;
+    margin-bottom: 1.3em;
+    width: 20em;
+}
+
+.main__pacientes {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--cor-de-fundo);
+    margin-left: 20vw;
+    padding: 20px;
+}
+
+.titulo_secundario {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    text-align: center;
+    width: 100%;
+    margin-left: 40px;
+}
+
+.patient-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 20px;
+    gap: 20px;
+}
+
+#add-patient-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto; /* Centralizar o formulário */
+}
+
+#add-patient-form input,
+#add-patient-form select {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+#add-patient-form button {
+    padding: 12px 20px;
+    background-color: var(--cor-de-botao);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+#add-patient-form button:hover {
+    background-color: var(--cor-de-botao-hover);
+}
+
+.theme-toggle-fixed {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.theme-toggle-fixed:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.theme-toggle-fixed:active {
+    transform: scale(0.95);
+}
+
+.storage-indicator {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.95);
+    color: #333;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+    z-index: 9998;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 12px;
+    min-width: 120px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.storage-indicator:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.storage-icon {
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.storage-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.storage-used {
+    color: #007bff;
+}
+
+.storage-total {
+    color: #666;
+    margin-left: 2px;
+}
+
+.storage-bar {
+    width: 100%;
+    height: 4px;
+    background: #e9ecef;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.storage-progress {
+    height: 100%;
+    background: linear-gradient(90deg, #28a745 0%, #ffc107 60%, #dc3545 90%);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+    width: 0%;
+}
+
+.storage-progress.low {
+    background: #28a745;
+}
+
+.storage-progress.medium {
+    background: #ffc107;
+}
+
+.storage-progress.high {
+    background: #fd7e14;
+}
+
+.storage-progress.critical {
+    background: #dc3545;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* MODO ESCURO */
+body.dark-mode {
+    background: linear-gradient(135deg, #0d1117 0%, #161b22 100%) !important;
+    color: #e6edf3 !important;
+}
+
+body.dark-mode .vertical-bar {
+    background: linear-gradient(135deg, #21262d 0%, #30363d 100%) !important;
+}
+
+body.dark-mode .titulo_principal,
+body.dark-mode .name {
+    color: #f0f6fc !important;
+}
+
+body.dark-mode .main__pacientes {
+    background: #0d1117 !important;
+}
+
+body.dark-mode .patient-list li {
+    background: #161b22 !important;
+    color: #e6edf3 !important;
+}
+
+body.dark-mode .patient-list li:hover {
+    background: #21262d !important;
+    border-color: #58a6ff !important;
+}
+
+body.dark-mode #add-patient-form input,
+body.dark-mode #add-patient-form select {
+    background: #0d1117 !important;
+    border: 1px solid #30363d !important;
+    color: #e6edf3 !important;
+}
+
+body.dark-mode #add-patient-form input:focus,
+body.dark-mode #add-patient-form select:focus {
+    border-color: #58a6ff !important;
+    box-shadow: 0 0 0 0.2rem rgba(88, 166, 255, 0.25) !important;
+}
+
+body.dark-mode #add-patient-form input::placeholder {
+    color: #7d8590 !important;
+}
+
+body.dark-mode #add-patient-form button {
+    background: #238636 !important;
+    color: #ffffff !important;
+}
+
+body.dark-mode #add-patient-form button:hover {
+    background: #2ea043 !important;
+}
+
+body.dark-mode .storage-indicator {
+    background: rgba(45, 45, 45, 0.95);
+    color: #e6edf3;
+    border-color: #30363d;
+}
+
+body.dark-mode .storage-total {
+    color: #7d8590;
+}
+
+body.dark-mode .storage-bar {
+    background: #30363d;
+}
+body.dark-mode  .titulo_principal{
+    background-color: purple !important;
+}
+.storage-indicator::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    background: #333;
+    color: white;
+    padding: 5px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    transform: translateY(5px);
+}
+
+.storage-indicator:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-5px);
+}
+
+/* RESPONSIVO */
+@media (max-width: 830px) {
+    .vertical-bar {
+        width: 15vw;
+    }
+    
+    .logo {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .name{
+        font-size: 16px;
+    }
+    
+    .main__pacientes {
+        margin-left: 15vw;
+        padding: 15px;
+    }
+    
+    .theme-toggle-fixed {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+        top: 10px;
+        right: 10px;
+    }
+    
+    .storage-indicator {
+        bottom: 10px;
+        right: 10px;
+        padding: 8px 12px;
+        font-size: 11px;
+        min-width: 100px;
+    }
+    
+    .storage-icon {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .vertical-bar {
+        width: 60px;
+    }
+    
+    .logo {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .name {
+        font-size: 12px;
+        margin-top: 5px;
+    }
+    
+    .main__pacientes {
+        margin-left: 60px;
+        padding: 10px;
+    }
+    
+    .titulo_principal {
+        width: 100%;
+        font-size: 1.2em;
+    }
+}

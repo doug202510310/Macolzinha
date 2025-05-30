@@ -1,0 +1,883 @@
+/* Estilo principal do template */
+.main__template {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--cor-de-fundo);
+    width: 100%;
+    max-width: calc(100vw - 20vw - 40px); /* Margem de segurança */
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* Container de botões - alinhados à direita */
+.button-container {
+    display: flex;
+    justify-content: flex-end; /* Alinha à direita */
+    margin-top: 20px;
+    gap: 10px; /* Gap pequeno entre os botões */
+    flex-wrap: nowrap; /* Não permite quebra */
+    width: 100%;
+    max-width: 80%;
+}
+
+/* Botão lateral - largura da sidebar */
+.button_lateral {
+    width: 100%;
+    max-width: 150px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    background-color: #ff69b4;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.button_lateral:hover {
+    background-color: #e754a6;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 105, 180, 0.3);
+}
+
+/* Botão template - metade da largura disponível */
+.button_template {
+    width: calc(50% - 5px); /* Metade da largura menos meio gap */
+    max-width: 120px; /* Limite máximo */
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    flex-shrink: 0; /* Não permite encolher */
+}
+
+.button_template:hover {
+    background-color: #e754a6;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 105, 180, 0.3);
+}
+
+/* Container das fichas - largura controlada */
+.fichas-container {
+    width: 100%;
+    max-width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilos para fichas - nunca ultrapassar container */
+.ficha-item {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+.ficha-header {
+    display: flex;
+    justify-content: flex-start; /* MUDANÇA: só o título à esquerda */
+    align-items: flex-start;
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #ddd;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.ficha-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    min-width: 0;
+}
+
+/* Container do texto + botões */
+.ficha-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; /* Alinha botões ao final */
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.ficha-text {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.5;
+    color: #333;
+    max-width: calc(100% - 80px); /* Espaço para os botões */
+    overflow: hidden;
+    flex: 1;
+}
+
+.ficha-actions {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    flex-shrink: 0;
+    align-self: flex-end; /* Posiciona no final */
+}
+
+/* Botões de ação menores */
+.ficha-actions button {
+    background: transparent;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 4px 6px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.3s ease;
+    min-width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ficha-actions button:hover {
+    background: #f5f5f5;
+    transform: scale(1.05);
+}
+
+.ficha-actions button[title="Editar"] {
+    border-color: #ffc107;
+    color: #ffc107;
+}
+
+.ficha-actions button[title="Editar"]:hover {
+    background: #ffc107;
+    color: white;
+}
+
+.ficha-actions button[title="Remover"] {
+    border-color: #dc3545;
+    color: #dc3545;
+}
+
+.ficha-actions button[title="Remover"]:hover {
+    background: #dc3545;
+    color: white;
+}
+
+.ficha-text {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.5;
+    color: #333;
+    margin-top: 0px; /* Sem margem */
+    max-width: 100%;
+    overflow: hidden;
+    padding-top: 5px; /* Pequeno padding no topo */
+}
+
+/* Container para nova ficha */
+.nova-ficha-container {
+    width: 100%;
+    max-width: 80%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+/* Textarea para nova ficha */
+#new-ficha {
+    width: 100%;
+    max-width: 100%;
+    min-height: 120px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.5;
+    resize: vertical;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+}
+
+#new-ficha:focus {
+    outline: none;
+    border-color: #ff69b4;
+    box-shadow: 0 0 0 2px rgba(255, 105, 180, 0.2);
+}
+
+/* Botão salvar ficha */
+#save-ficha {
+    background-color: #28a745;
+    color: white;
+}
+
+#save-ficha:hover {
+    background-color: #218838 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+}
+
+/* Botão voltar específico */
+#back-to-list {
+    background-color: var(--cor-de-botao);
+    color: white;
+}
+
+
+#back-to-list:hover {
+    background-color: #545b62 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(108, 117, 125, 0.3);
+}
+
+/* Títulos */
+.titulo_principal,
+.titulo_secundario {
+    width: 100%;
+    max-width: 80%;
+    text-align: center;
+    margin-bottom: 1.3em;
+    box-sizing: border-box;
+}
+
+/* Informações do paciente */
+.patient-info {
+    width: 100%;
+    max-width: 80%;
+    text-align: center;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.patient-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid var(--cor-de-botao);
+}
+
+.patient-name {
+    font-size: 1.8em;
+    color: var(--cor-de-titulo);
+    margin-bottom: 10px;
+    word-wrap: break-word;
+}
+
+/* Seção de atividades - seguindo o padrão das fichas */
+.atividades-section {
+    width: 100%;
+    max-width: 80%; /* Mesmo tamanho das fichas */
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.atividades-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+/* Botões de atividade seguindo o padrão */
+.button_atividade {
+    width: calc(50% - 7.5px); /* Metade da largura com gap */
+    max-width: 200px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    background-color: #6f42c1; /* Cor roxa para diferenciar */
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.button_atividade:hover {
+    background-color: #8a63d2;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(111, 66, 193, 0.3);
+}
+
+/* Modal seguindo o padrão */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 8px;
+    padding: 0;
+    width: 90%;
+    max-width: 500px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modal-header {
+    background: var(--cor-de-botao);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+}
+
+.close-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.modal-body input,
+.modal-body textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 14px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+.modal-body input:focus,
+.modal-body textarea:focus {
+    outline: none;
+    border-color: var(--cor-de-botao);
+    box-shadow: 0 0 0 2px rgba(255, 105, 180, 0.2);
+}
+
+.modal-body textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-salvar,
+.btn-cancelar {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.btn-salvar {
+    background: #28a745;
+    color: white;
+}
+
+.btn-salvar:hover {
+    background: #218838;
+    transform: translateY(-1px);
+}
+
+.btn-cancelar {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-cancelar:hover {
+    background: #545b62;
+    transform: translateY(-1px);
+}
+
+/* Lista de atividades no modal */
+#lista-atividades {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.atividade-item {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.atividade-item:hover {
+    background: #e9ecef;
+    border-color: var(--cor-de-botao);
+    transform: translateY(-1px);
+}
+
+.atividade-nome {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.atividade-texto {
+    color: #666;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+/* Modo escuro */
+body.dark-mode .main__template {
+    background-color: #0d1117;
+    color: #e6edf3;
+}
+
+body.dark-mode .ficha-item {
+    background: #161b22;
+    border-color: #30363d;
+    color: #e6edf3;
+}
+
+body.dark-mode .ficha-header {
+    border-bottom-color: #30363d;
+}
+
+body.dark-mode .ficha-text {
+    color: #e6edf3;
+}
+
+body.dark-mode #new-ficha {
+    background: #0d1117;
+    border-color: #30363d;
+    color: #e6edf3;
+}
+
+body.dark-mode #new-ficha:focus {
+    border-color: #ff69b4;
+}
+
+body.dark-mode .button_lateral,
+body.dark-mode .button_template {
+    background-color: #6f42c1;
+}
+
+body.dark-mode .button_lateral:hover,
+body.dark-mode .button_template:hover {
+    background-color: #8a63d2;
+}
+
+body.dark-mode .titulo_secundario {
+    color: #f0f6fc;
+}
+
+/* Modo escuro - ajustes para botões */
+body.dark-mode .ficha-actions button {
+    background: transparent;
+    border-color: #30363d;
+    color: #e6edf3;
+}
+
+body.dark-mode .ficha-actions button:hover {
+    background: #30363d;
+}
+
+body.dark-mode .ficha-actions button[title="Editar"] {
+    border-color: #ffc107;
+    color: #ffc107;
+}
+
+body.dark-mode .ficha-actions button[title="Editar"]:hover {
+    background: #ffc107;
+    color: #000;
+}
+
+body.dark-mode .ficha-actions button[title="Remover"] {
+    border-color: #dc3545;
+    color: #dc3545;
+}
+
+body.dark-mode .ficha-actions button[title="Remover"]:hover {
+    background: #dc3545;
+    color: white;
+}
+
+body.dark-mode .atividades-section {
+    color: #e6edf3;
+}
+
+body.dark-mode .button_atividade {
+    background-color: #6f42c1;
+}
+
+body.dark-mode .button_atividade:hover {
+    background-color: #8a63d2;
+}
+
+body.dark-mode .modal-content {
+    background: #161b22;
+    color: #e6edf3;
+}
+
+body.dark-mode .modal-header {
+    background: #6f42c1;
+}
+
+body.dark-mode .modal-body input,
+body.dark-mode .modal-body textarea {
+    background: #0d1117;
+    border-color: #30363d;
+    color: #e6edf3;
+}
+
+body.dark-mode .modal-body input:focus,
+body.dark-mode .modal-body textarea:focus {
+    border-color: #6f42c1;
+}
+
+body.dark-mode .atividade-item {
+    background: #21262d;
+    border-color: #30363d;
+    color: #e6edf3;
+}
+
+body.dark-mode .atividade-item:hover {
+    background: #30363d;
+    border-color: #6f42c1;
+}
+
+body.dark-mode .atividade-nome {
+    color: #f0f6fc;
+}
+
+body.dark-mode .atividade-texto {
+    color: #8b949e;
+}
+
+/* Responsivo para tablets (iPad) */
+@media (max-width: 1024px) {
+    .main__template {
+        max-width: calc(100vw - 15vw - 30px);
+        padding: 15px;
+    }
+    
+    .button-container,
+    .fichas-container,
+    .nova-ficha-container,
+    .titulo_principal,
+    .titulo_secundario,
+    .patient-info {
+        max-width: 85%;
+    }
+    
+    /* NOVO: Container do texto + botões para iPad */
+    .ficha-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 10px;
+        margin-top: 5px;
+    }
+    
+    .ficha-text {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        line-height: 1.5;
+        color: #333;
+        max-width: calc(100% - 80px); /* Espaço para os botões */
+        overflow: hidden;
+        flex: 1;
+    }
+    
+    .ficha-actions {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+        flex-shrink: 0;
+        align-self: flex-end;
+    }
+    
+    /* Botões de ação para iPad */
+    .ficha-actions button {
+        background: transparent;
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        padding: 4px 6px;
+        cursor: pointer;
+        font-size: 12px;
+        transition: all 0.3s ease;
+        min-width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .ficha-actions button:hover {
+        background: #f5f5f5;
+        transform: scale(1.05);
+    }
+    
+    .ficha-actions button[title="Editar"] {
+        border-color: #ffc107;
+        color: #ffc107;
+    }
+    
+    .ficha-actions button[title="Editar"]:hover {
+        background: #ffc107;
+        color: white;
+    }
+    
+    .ficha-actions button[title="Remover"] {
+        border-color: #dc3545;
+        color: #dc3545;
+    }
+    
+    .ficha-actions button[title="Remover"]:hover {
+        background: #dc3545;
+        color: white;
+    }
+}
+
+/* Responsivo para smartphones */
+@media (max-width: 830px) {
+    .main__template {
+        width: 100%;
+        max-width: calc(100vw - 15vw - 20px);
+        margin: 0 auto;
+        padding: 10px;
+    }
+    
+    .button-container,
+    .fichas-container,
+    .nova-ficha-container,
+    .titulo_principal,
+    .titulo_secundario,
+    .patient-info {
+        width: 100%;
+        max-width: 95%;
+    }
+    
+    .button-container {
+        justify-content: flex-end;
+        flex-wrap: nowrap;
+        gap: 8px;
+        margin-top: 15px;
+    }
+    
+    .button_template {
+        width: calc(50% - 4px);
+        max-width: 100px;
+        height: 35px;
+        font-size: 12px;
+    }
+    
+    .ficha-item {
+        padding: 12px;
+        margin-bottom: 12px;
+    }
+    
+    /* CORRIGIDO: Container do texto + botões para mobile */
+    .ficha-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 8px;
+        margin-top: 5px;
+    }
+    
+    .ficha-text {
+        max-width: calc(100% - 60px); /* Menos espaço para botões em mobile */
+        margin-bottom: 0;
+    }
+    
+    .ficha-actions {
+        gap: 3px;
+    }
+    
+    .ficha-actions button {
+        min-width: 20px;
+        height: 20px;
+        font-size: 10px;
+        padding: 2px 4px;
+    }
+    
+    #new-ficha {
+        min-height: 100px;
+        padding: 12px;
+        font-size: 13px;
+    }
+    
+    .patient-photo {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .patient-name {
+        font-size: 1.5em;
+    }
+}
+
+/* Responsivo para telas muito pequenas */
+@media (max-width: 480px) {
+    .main__template {
+        width: 100%;
+        max-width: calc(100vw - 60px - 10px);
+        padding: 8px;
+    }
+    
+    .button-container,
+    .fichas-container,
+    .nova-ficha-container,
+    .titulo_principal,
+    .titulo_secundario,
+    .patient-info {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .button-container {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .button_template {
+        width: calc(50% - 4px);
+        max-width: 80px;
+        height: 32px;
+        font-size: 11px;
+    }
+    
+    /* NOVO: Empilha verticalmente em telas muito pequenas */
+    .ficha-content {
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 5px;
+    }
+    
+    .ficha-text {
+        max-width: 100%;
+        align-self: stretch;
+    }
+    
+    .ficha-actions button {
+        min-width: 18px;
+        height: 18px;
+        font-size: 9px;
+        padding: 2px 3px;
+    }
+    
+    .ficha-item {
+        padding: 10px;
+    }
+    
+    #new-ficha {
+        min-height: 80px;
+        padding: 10px;
+    }
+    
+    .patient-photo {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .patient-name {
+        font-size: 1.3em;
+    }
+}
+
+/* Força quebra de palavras longas em todos os elementos */
+* {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Remove qualquer scroll horizontal */
+html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+}
