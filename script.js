@@ -243,17 +243,37 @@ document.addEventListener("DOMContentLoaded", () => {
                     return;
                 }
 
-                if (photoFile.size > 2 * 1024 * 1024) { // 2MB limite
-                    alert('A imagem deve ter no máximo 2MB.');
+                if (photoFile.size > 5 * 1024 * 1024) { // Aumentei para 5MB antes do processamento
+                    alert('A imagem deve ter no máximo 5MB.');
                     return;
                 }
 
-                const reader = new FileReader();
-                reader.onload = (event) => processNewPatient(event.target.result);
-                reader.onerror = () => {
-                    alert('Erro ao carregar a imagem. Tente novamente.');
-                };
-                reader.readAsDataURL(photoFile);
+                // Mostrar indicador de processamento (opcional)
+                const submitBtn = addPatientForm.querySelector('button[type="submit"]');
+                if (submitBtn) {
+                    submitBtn.textContent = "Processando imagem...";
+                    submitBtn.disabled = true;
+                }
+
+                // Processar imagem antes de salvar
+                processImage(photoFile, 800, 600, 0.7)
+                    .then(compressedImage => {
+                        processNewPatient(compressedImage);
+                        // Restaurar botão
+                        if (submitBtn) {
+                            submitBtn.textContent = "Adicionar";
+                            submitBtn.disabled = false;
+                        }
+                    })
+                    .catch(error => {
+                        console.error('❌ Erro ao processar imagem:', error);
+                        alert('Erro ao processar a imagem. Tente novamente.');
+                        // Restaurar botão
+                        if (submitBtn) {
+                            submitBtn.textContent = "Adicionar";
+                            submitBtn.disabled = false;
+                        }
+                    });
             } else {
                 processNewPatient();
             }
@@ -280,7 +300,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         // Alterar logo
-        logoInput.addEventListener('change', (event) => {
+        logoInput.addEventListener('change', async (event) => {
             const file = event.target.files[0];
             if (!file) return;
 
@@ -289,25 +309,34 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            if (file.size > 1 * 1024 * 1024) { // 1MB limite
-                alert('A imagem deve ter no máximo 1MB.');
+            if (file.size > 3 * 1024 * 1024) { // Aumentei para 3MB antes do processamento
+                alert('A imagem deve ter no máximo 3MB.');
                 return;
             }
 
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                mainLogo.src = e.target.result;
-                localStorage.setItem('main-logo-src', e.target.result);
+            try {
+                // Feedback visual - processando
+                mainLogo.style.opacity = '0.5';
                 
-                // Feedback visual
+                // Processar e redimensionar logo para tamanho menor
+                const processedLogo = await processImage(file, 400, 400, 0.8);
+                
+                mainLogo.src = processedLogo;
+                localStorage.setItem('main-logo-src', processedLogo);
+                
+                // Feedback visual - concluído
+                mainLogo.style.opacity = '1';
                 mainLogo.style.borderColor = '#4caf50';
                 setTimeout(() => {
                     mainLogo.style.borderColor = '';
                 }, 2000);
 
-                console.log('🖼️ Logo atualizado');
-            };
-            reader.readAsDataURL(file);
+                console.log('🖼️ Logo atualizado e otimizado');
+            } catch (error) {
+                console.error('❌ Erro ao processar logo:', error);
+                alert('Erro ao processar a imagem do logo. Tente novamente.');
+                mainLogo.style.opacity = '1';
+            }
         });
     }
 
@@ -347,6 +376,60 @@ document.addEventListener("DOMContentLoaded", () => {
 
     console.log('🎯 Sistema inicializado com sucesso');
 });
+
+// Função para processar/redimensionar imagens
+function processImage(file, maxWidth = 800, maxHeight = 600, quality = 0.7) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        
+        reader.onload = function(event) {
+            const img = new Image();
+            
+            img.onload = function() {
+                // Calcular novas dimensões mantendo proporção
+                let width = img.width;
+                let height = img.height;
+                
+                if (width > height) {
+                    if (width > maxWidth) {
+                        height = Math.round((height * maxWidth) / width);
+                        width = maxWidth;
+                    }
+                } else {
+                    if (height > maxHeight) {
+                        width = Math.round((width * maxHeight) / height);
+                        height = maxHeight;
+                    }
+                }
+                
+                // Criar canvas para redimensionar
+                const canvas = document.createElement('canvas');
+                canvas.width = width;
+                canvas.height = height;
+                
+                // Desenhar imagem redimensionada
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, width, height);
+                
+                // Converter para formato comprimido
+                const dataUrl = canvas.toDataURL('image/jpeg', quality);
+                
+                // Log para debug
+                const originalSize = Math.round(file.size / 1024);
+                const newSize = Math.round((dataUrl.length * 0.75) / 1024);
+                console.log(`📷 Imagem otimizada: ${originalSize}KB → ${newSize}KB (${Math.round(newSize/originalSize*100)}%)`);
+                
+                resolve(dataUrl);
+            };
+            
+            img.onerror = reject;
+            img.src = event.target.result;
+        };
+        
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+    });
+}
 
 // ===== INDICADOR DE STORAGE =====
 
